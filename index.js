@@ -17,7 +17,7 @@ app.get('/', async (req, res) => {
 
   try {
     const result = await emailDomainCheck(email);
-    res.json({ isValid: result.isValid, isDisposable: result.isDisposable });
+    res.json({ isValid: result.isValid && !result.isDisposable });
   } catch (error) {
     console.error('Error checking email domain:', error);
     res.status(500).json({ error: 'An error occurred while checking the email domain.' });
